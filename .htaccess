@@ -1,0 +1,58 @@
+<IfModule mod_rewrite.c>
+    # prevent directory listings
+    Options -Indexes
+    IndexIgnore */*
+
+    # follow symbolic links
+    Options FollowSymlinks
+    RewriteEngine on
+
+    #------------------------#
+    #------FOR LOCALHOST-----#
+    #------------------------#
+#    RewriteCond %{REQUEST_URI} !^admin
+#    RewriteRule ^admin(/.+)?$ backend/web/$1 [L,PT]
+    RewriteRule ^(.+)?$ web/$1
+
+    #RewriteCond %{REQUEST_URI} !^storage/web/
+    #RewriteRule ^storage/web(/.+)?$ storage/web/$1 [L,PT]
+    #RewriteCond %{REQUEST_URI} !storage/
+    #--------------------------------------------------------------#
+
+    #--------------------#
+    #-----FOR SERVER-----#  # ------------Cara Fahrul--------------#
+    #--------------------#
+    # if request begins with /admin remove admin and ad /backend/web/
+    #RewriteCond %{REQUEST_URI} ^/backend
+    #RewriteRule ^backend/(.*) /backend/web/$1 [L]
+
+    # other requests add /frontend/web/$1
+    #RewriteCond %{REQUEST_URI} !^/(frontend/web|backend/web)
+    #RewriteRule (.*) /frontend/web/$1
+
+    # if frontend request
+    #RewriteCond %{REQUEST_URI} ^/frontend/web
+    #RewriteRule (.*) /frontend/web/$1 [L]
+
+    # if backend request
+    #RewriteCond %{REQUEST_URI} ^/backend
+    #RewriteRule ^backend/(.*) /backend/web/$1 [L]
+    #----------------------------------------------------#
+</IfModule>
+
+# code below htaccess from anggri
+#RewriteEngine on
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+#RewriteCond %{HTTP_HOST} ^beverlyeducationcenter.sch.id$ [NC,OR]
+#RewriteCond %{HTTP_HOST} ^www.beverlyeducationcenter.sch.id$
+#RewriteCond %{REQUEST_URI} !frontend/web
+#RewriteCond %{REQUEST_URI} !storage/
+#RewriteRule (.*) /frontend/web/$1 [L]
+# end code from anggri
+
+## Deny accessing below extensions
+<Files ~ "(.json|.lock|.git)">
+Order allow,deny
+Deny from all
+</Files>
