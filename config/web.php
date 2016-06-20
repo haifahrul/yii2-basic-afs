@@ -5,18 +5,21 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'controllerNamespace' => 'app\controllers',
+    'defaultRoute' => 'site/index',
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '2FzOcgB-KaEVEBap3-uvJ_qVXJdzF5Lr',
+            'baseUrl' => '',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => TRUE,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -26,7 +29,7 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => TRUE,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -40,14 +43,14 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => require(__DIR__ . '/_urlManager.php'),
         'assetManager' => [
-            'appendTimestamp' => true,
+            'appendTimestamp' => TRUE,
         ],
         'view' => [
             'theme' => [
                 'pathMap' => [
                     '@app/views' => '@app/themes/basic/views',
-                    '@app/views' => '@app/themes/adminlte',
-//                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app',
+                    //'@app/views' => '@app/themes/adminlte',
+                    //'@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app',
                 ],
             ],
         ],
