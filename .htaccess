@@ -6,14 +6,14 @@
      # follow symbolic links
      Options FollowSymlinks
      RewriteEngine on
-     RewriteCond %{REQUEST_URI} !^bakcend
-     RewriteRule ^admin(/.+)?$ backend/web/$1 [L,PT]
-     RewriteRule ^(.+)?$ frontend/web/$1
+#     RewriteCond %{REQUEST_URI} !^bakcend
+#     RewriteRule ^admin(/.+)?$ backend/web/$1 [L,PT]
+     RewriteRule ^(.+)?$ web/$1
 
 #    FOR SERVER
-    RewriteCond %{REQUEST_URI} ^/admin/
-    RewriteRule ^admin/(.*) /backend/web/$1 [L]
-    RewriteRule (.*) /frontend/web/$1
+#    RewriteCond %{REQUEST_URI} ^/admin/
+#    RewriteRule ^admin/(.*) /backend/web/$1 [L]
+#    RewriteRule (.*) web/$1
 </IfModule>
 
 ## Deny accessing below extensions
