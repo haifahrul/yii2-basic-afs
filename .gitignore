@@ -23,3 +23,7 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 themes/adminlte/assets/
+
+/config/params-local.php
+/config/web-local.php
+modules/
